@@ -1,0 +1,20 @@
+{
+  "name": "ListShare",
+  "version": "1.0.0",
+  "description": "public check list",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "tdtd",
+  "private": true,
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.10",
+    "shortid": "^2.2.6",
+    "uuid": "^2.0.2"
+  }
+}

@@ -1,0 +1,138 @@
+h1{
+  a{
+    &:hover, &:active, &:focus{
+      text-decoration: none;
+    }
+  }
+}
+
+.main-btn{
+  margin-bottom: 5px;
+}
+
+.delete{
+  font-weight: bolder;
+  font-family: "Arial Black", Gadget, sans-serif;
+  color: #d9534f;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid #d9534f;
+  border-radius: 2px;
+  &:hover, &:focus, &:active{
+    color: #fff;
+    background: #d9534f;
+    border: none;
+    border-radius: 2px;
+  }
+}
+
+.prevent{
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;  
+}
+
+.private{
+
+}
+
+.main-page{
+  h4{
+    margin-bottom: 20px;
+  }
+  ul{
+    li{
+      &:hover{
+        background: #ddd;
+      }
+    }
+  }
+}
+
+.list-group-item{
+  cursor: pointer;
+}
+
+.new-checklist{
+  input{
+    background: none;
+    max-width: 100%;
+    border: none;
+    color: #363636;
+    padding-left: 5px;
+    border-bottom: 1px solid #363636;
+    &:focus, &:active{
+      outline: none;
+    }
+  }
+}
+
+.button-container{
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-top: 5px;
+  text-align: right;
+}
+
+//Change Bootstrap Tooltip style
+.tooltip{
+
+}
+.tooltip-arrow{
+  color: white;
+}
+.tooltip-inner{
+  color: #363636;
+  background: white;
+  border: 1px solid #ddd;
+}
+
+.tooltip.bs-tether-element-attached-bottom .tooltip-arrow,.tooltip.tooltip-top .tooltip-arrow{
+  bottom:0;
+  left:50%;
+  margin-left:-5px;
+  border-width:5px 5px 0;
+  border-top-color:#ddd;
+}
+
+.tooltip.bs-tether-element-attached-left,.tooltip.tooltip-right{
+  padding:0 5px;
+  margin-left:3px
+}
+
+.tooltip.bs-tether-element-attached-left .tooltip-arrow,.tooltip.tooltip-right .tooltip-arrow{
+  top:50%;
+  left:0;
+  margin-top:-5px;
+  border-width:5px 5px 5px 0;
+  border-right-color:#ddd;
+}
+
+.tooltip.bs-tether-element-attached-top,.tooltip.tooltip-bottom{
+  padding:5px 0;margin-top:3px
+}
+
+.tooltip.bs-tether-element-attached-top .tooltip-arrow,.tooltip.tooltip-bottom .tooltip-arrow{
+  top:0;
+  left:50%;
+  margin-left:-5px;
+  border-width:0 5px 5px;
+  border-bottom-color:#ddd;
+}
+
+.tooltip.bs-tether-element-attached-right,.tooltip.tooltip-left{
+  padding:0 5px;
+  margin-left:-3px
+}
+
+.tooltip.bs-tether-element-attached-right .tooltip-arrow,.tooltip.tooltip-left .tooltip-arrow{
+  top:50%;
+  right:0;
+  margin-top:-5px;
+  border-width:5px 0 5px 5px;
+  border-left-color:#ddd;
+}

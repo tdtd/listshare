@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>ListShare | Public Check Lists</title>
+    <meta name="description" content="ListShare | Public Check Lists">
+    <meta name="keywords" content="public, checklist, list, check">
+    <meta property="og:title" content="ListShare">
+    <meta property="og:site_name" content="ListShare">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://listshare.herokuapp.com/">
+    <meta property="og:description" content="ListShare | Public Check Lists">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/stylesheet.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+		<script src="./app.js"></script>
+	</head>
+	<body ng-controller="MainCtrl">
+    <div class="container-fluid">
+      <div class="header">
+        <span>
+          <h1 class="display-4"><a href="/">ListShare | Public Check Lists</a></h1>
+          <h4><small>Create and share lists.</small>
+          <button class="btn btn-sm btn-outline-primary main-btn" ng-click="startNewCheckList()">+</button></h4>
+        </span>
+      </div>
+      <hr>
+    </div>
+    
+    <div class="container">
+      <div class="main">
+        <div class="alert alert-dismissible fade in" ng-class="'alert-'+alert.type" role="alert" ng-repeat="alert in alerts track by $index">
+          <button type="button" class="close" aria-label="Close" ng-click="removeAlert($index)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>{{alert.title}} | </strong> {{alert.text}}
+        </div>
+        
+        <div class="main-page" ng-hide="anyActive()">
+          <h1>Welcome to ListShare.</h1>
+          <h4>
+            <small>Make and share checklists with your friends, family and coworkers. All checklists are stored on your machine, so while they can see what you want to do, they won't be able to see what you have done. If you don't want to share your checklist with the world, make sure to make it private. Only those with the link will be able to see it.</small>
+          </h4>
+          <div class="card">
+            <h3 class="card-header"> Recent Checklists </h3>
+            <div class="card-block">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" ng-repeat="item in recentLists track by $index" ng-click="goto(item._id)">
+                  <span class="prevent">{{ item.title }} </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="new-checklist" ng-show="creatingNewChecklist">
+          <form>
+            <div class="card">
+              <h3 class="card-header"> 
+                <input type="text" ng-model="newChecklist.title" placeholder="New Checklist">
+              </h3>
+              <div class="card-block">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" ng-repeat="item in newChecklist.list track by $index">
+                    <input ng-model="item.text" placeholder="{{'Item '+($index+1)}}" /> <span class="delete" ng-click="removeItemFromNew($index)">X</span>
+                  </li>
+                  <li class="list-group-item">
+                    <button class="btn btn-outline-success" ng-click="addItemToNew()">Add Item</button>
+                  </li>
+                </ul>
+                <span class="button-container">
+                  <span class="private">
+                    <input type="checkbox" ng-model="newChecklist.private"/> Private?
+                  </span>
+                  <button class="btn btn-outline-danger" ng-click="saveNewChecklist()">Save</button>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
+            
+        <div class="current-check-list" ng-hide="creatingNewChecklist || !currentChecklist">
+          <div class="card">
+            <h3 class="card-header"> {{currentChecklist.title}} </h3>
+            <div class="card-block">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" ng-repeat="item in currentChecklist.list track by $index" ng-click="checkItem($index)">
+                  <input type="checkbox" class="prevent" ng-model="item.check" ng-change="updateSaves()" readonly /> 
+                  <span class="prevent">{{ item.text }} </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+            
+      </div>
+    </div>
+	</body>
+</html>
